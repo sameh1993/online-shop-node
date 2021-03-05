@@ -1,0 +1,85 @@
+<%- include("parts/header.ejs") %>
+
+    <%- include("parts/navbar") %>
+
+
+        <div class="products">
+            <div class="container">
+                <div class="head text-center">
+                    <div class="container">
+                        <h3 class="text-capitalize">   our Products </h3>
+                        <p class=""> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae praesentium illum
+                            voluptates dolorum esse quibusdam inventore neque nostrum quidem id dicta minima </p>
+                    </div>
+                </div>
+                <% if (products.length> 0) { %>
+                <form action="/" method="GET" class="format text-center" >
+                    <select name="category" class="form-select btn border mr-3 text-capitalize"
+                        aria-label="Default select example">
+                        <option value="all" selected> All </option>
+                        <option value="clothes"> Clothes </option>
+                        <option value="tablet"> Tablets </option>
+                        <option value="mobile"> Phones </option>
+                    </select>
+                    <input type="submit" class="btn btn-primary" value="filter" />
+                </form>
+                <div class="row">
+
+
+
+                    
+                        <% if (products) { %>
+                            <% for(let product of products) { %>
+                                <div class="card realtive col-md-6 col-lg-4 col-sm-12 col-xs-12 mt-3">
+                                    <% if(isAdmin) { %>
+                                    <form method="POST" action="/delete" class="close-icon">
+                                        <input type="hidden" name="id" value="<%= product._id %>"> 
+                                        <button class="btn" type="submit"></button>
+                                     </form>
+                                    <% } %> 
+                                    <div class="img text-center">
+                                        <img class="card-img-top" src="<%= product.img  %>" />
+                                    </div>
+                                    <div class="info text-center">
+                                        <h4 class="card-title text-capitalize">
+                                            <a href="/product/<%= product.id %> ">
+                                             <%= product.name %>
+                                            </a>
+                                        </h4>
+                                        <p>
+                                         Price : <%= product.price + " $" %>
+                                        </p>
+                                        <p class="card-text">
+                                            
+                                        <%= product.description.substring(0, 80) %> <a href="/product/<%= product.id %> "> Read More </a>
+                                        </p>
+                                        <form class="form pt-4 text-center" action="/carts" method="POST">
+                                            <div class="form-group">
+                                                <input type="number" name="amount" placeholder=" Enter product amount"/>
+                                                <input type="hidden" name="name" value="<%= product.name %>" />
+                                                <input type="hidden" name="price" value="<%= product.price %>" />
+                                                <input type="hidden" name="productId" value="<%= product._id %>" />
+                                                <input type="submit" class="btn btn-info mt-3" value="Add To Card">
+                                            </div>
+                                        
+                                        </form>
+                                    </div>
+                                </div>
+                                <% if(cartsError.length > 0) { %> 
+                                    <div class="alert alert-danger msg text-center text-capitalize"> <%= cartsError[0].msg  %>  </div>
+                                    <% } %> 
+                                <% } %>
+                                    <% } else { %>
+                                        <p class="lead"> there are not products </p>
+                                        <% } %>
+                                            <% } else { %>
+                                                <div class="alert alert-danger lead text-capitalize text-center"> there are not
+                                                    products yet </div>
+                   
+
+                </div>  
+                <% } %>
+            </div>
+        </div>
+
+        <%- include("parts/footer") %>

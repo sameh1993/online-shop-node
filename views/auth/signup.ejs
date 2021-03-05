@@ -1,0 +1,69 @@
+<%- include("../parts/header") %>
+
+
+ <%- include("../parts/navbar") %>
+
+
+ <% if(signupError.length > 0) {  %> 
+    <div class="fixed alert alert-danger wow fadeInDown" data-wow-duration="1s">
+        <%= signupError %> 
+    </div>
+ <% } %> 
+
+
+  <div class="authent">
+    <div class="container">
+        <div class="row">
+            <form action="/signup" method="POST" class="form shadow">
+                <h3 class="text-center mt-2 mb-4"> Sign Up </h3>
+                <div class="form-group">
+                    <input type="text" placeholder="user name" name="username" class="form-control" />
+                    <% const userError = validatorError.find(err => err.param === 'username') %> 
+                    <% if (userError) { %>
+                            <div class="alert alert-danger"> <%= userError.msg %>  </div>
+                        <% } %> 
+                </div>
+                
+
+                <div class="form-group">
+                    <input type="email" placeholder="Enter Email" name="email" class="form-control" />
+                    <% const emailError = validatorError.find(err => err.param === 'email') %> 
+                    <% if (emailError) { %>
+                            <div class="alert alert-danger" style="font-size:12px"> <%= emailError.msg %>  </div>
+                        <% } %> 
+                </div>
+
+  
+                <div class="form-group">
+                    <input type="password" placeholder="Enter Pass" name="password" class="form-control" />
+                    <% const passError = validatorError.find(err => err.param === 'password') %> 
+                    <% if (passError) { %>
+                            <div class="alert alert-danger" style="font-size:12px"> <%= passError.msg %>  </div>
+                        <% } %> 
+                </div>
+    
+                <div class="form-group">
+                    <input type="password" placeholder="Enter confirm Pass" name="confirmPass" class="form-control" />
+                    <% const confirmError = validatorError.find(err => err.param === 'confirmPass') %> 
+                    <% if (confirmError) { %>
+                            <div class="alert alert-danger" style="font-size:12px"> <%= confirmError.msg %>  </div>
+                        <% } %> 
+                </div>
+
+                <% if(isAdmin === true) {  %> 
+                    <input type="checkbox" class="form d-block mb-2" name="isAdmin" /> Is he Admin
+                 <% } %> 
+
+                <input type="submit" class="btn btn-info" />
+            </form>
+
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+<%- include("../parts/footer") %>

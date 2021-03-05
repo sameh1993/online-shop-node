@@ -1,0 +1,46 @@
+<%- include("../parts/header") %>
+
+
+ <%- include("../parts/navbar") %>
+
+
+
+
+
+  <div class="authent">
+    <div class="container">
+        <% if ( loginError.length > 0 ) {  %> 
+            <div class="alert alert-danger text-center mt-4"> <%= loginError %>  </div>
+            <% } %> 
+        <div class="row">
+            <form action="/login" method="POST" class="form shadow">
+                <h3 class="text-center mt-2 mb-4"> Sign In </h3>
+
+                <div class="form-group">
+                    <input type="email" placeholder="Enter Email" name="emailLogin" class="form-control" />
+                    <% let errorEmail = fieldError.find(err => err.param === 'emailLogin') %> 
+                    <% if(errorEmail) {  %> 
+                        <div class="alert alert-danger"> <%= errorEmail.msg %>  </div>
+                        <% } %> 
+                </div>
+    
+                <div class="form-group">
+                    <input type="password" placeholder="Enter Pass" name="passLogin" class="form-control" />
+                    <% let passError = fieldError.find(err => err.param === 'passLogin') %> 
+                    <% if(passError) {  %> 
+                        <div class="alert alert-danger"> <%= passError.msg %>  </div>
+                        <% } %> 
+                </div>
+    
+              
+                <input type="submit" class="btn btn-info" />
+            </form>
+            
+
+            
+        </div>
+    </div>
+ </div>
+
+
+<%- include("../parts/footer") %>

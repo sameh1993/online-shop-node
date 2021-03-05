@@ -1,0 +1,252 @@
+
+table {
+  /* min-height:450px; */
+  position: relative;
+  overflow:hidden;
+  background-color: rgba(0,0,0,.1);
+}
+
+.p-relative .btns .form {
+  justify-content: flex-end;
+}
+
+.p-relative .btns input {
+  margin-right: 14px;
+}
+.nav-item .nav-link {
+  text-transform: capitalize;
+}
+
+.products {
+  padding: 2em 0;
+}
+
+.products .format {
+  background-color: rgb(160 158 158 / 10%);
+  padding: 20px;
+  width:50%;
+  margin:auto;
+}
+
+.products .format select {
+  width:82% !important;
+}
+
+.products .card {
+  padding: 15px 0;
+}
+
+.products .card .close-icon {
+  position:absolute;
+  top: 20px;
+  left:20px;
+  width:22px;
+  height: 22px;
+  background-image: url(../download.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.products .row > div {
+  transform:scalex(.94)
+}
+
+.products .card a {
+  text-decoration: none;
+}
+
+.card .img {
+  height: 230px;
+  padding: 15px;
+}
+
+.card .img img {
+  height: 100%;
+  width: 85%;
+  margin:auto 0;
+}
+
+.card input:first-child {
+  display:block;
+  width: 85%;
+  margin:auto;
+  border-radius: 20px;
+  border:0;
+  padding:7px 13px;
+}
+
+
+
+/** start product page **/
+
+.product  .row {
+  justify-content: center;
+}
+
+.product .row > div {
+  padding: 15px 25px;
+  background-color: #fbfbfb;
+  transform: scalex(.95);
+}
+
+.product .row > div form {
+  text-align: center;
+}
+
+.product .row > div form input {
+  display: block;
+  margin:auto;
+}
+
+.product .row > div .form input:first-child {
+  margin-bottom: 20px;
+  border-radius:2px;
+  padding: 3px;
+  border:1px solid #ccc;
+  width: 80%;
+  text-align:center;
+  display:block;
+}
+
+
+.msg {
+  position:fixed;
+  top: 25px;
+  left:50%;
+  z-index: 600;
+  width:40%;
+  margin-left:-25%;
+}
+
+/** start authication pages **/
+.authent .row {
+  min-height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+.authent form {
+  width: 58%;
+  margin:30px auto;
+  padding: 35px;
+  border-radius: 8px;
+  text-align:center;
+  background-color: #fbfbfb;
+}
+
+.authent form ::placeholder {
+  text-transform: capitalize;
+}
+
+/* start login  */
+
+.products .form {
+  width: 80%;
+  border: 1px solid rgba(0,0,0,.1);
+  background-color: #f7f7f7;
+  margin:auto;
+}
+
+.fixed {
+  position: fixed;
+  top: 30px;
+  width: 40%;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  text-transform:capitalize;
+}
+
+.form div.alert-danger {
+  margin-bottom:0;
+  margin-top:4px;
+  font-size: 12px;
+  padding:3px;
+  text-align:center;
+  text-transform: capitalize;
+}
+
+/*** start verify order **/
+
+.verify .form{
+  margin:auto;
+  width: 50%;
+  background-color: #d2d4d6;
+  padding:30px;
+  margin-top: 50px;
+  text-align:Center;
+  border-radius: 13px;
+}
+
+.verify .form h4 {
+  color: #545252;
+}
+
+.verify .form .btn {
+  width: 130px;
+}
+
+/**** start style add product page **/
+
+.addProduct h3 {
+  padding: 20px 0;
+}
+
+.addProduct .form {
+  width: 60%;
+  margin: auto;
+  background-color: #fbfbfb;
+  padding: 50px 45px;
+  margin: 50px 0;
+}
+
+.addProduct .form .btn {
+    display:block;
+    margin: auto;
+}
+
+
+/**########## manage orders Page ###############*/
+
+.form-manage {
+  width: 50%;
+  padding: 25px;
+  margin: 50px auto;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 10px;
+}
+
+.form-manage .row {
+  justify-content:space-between;
+  padding: 0 20px;
+}
+
+.content-manage .format {
+  margin: auto;
+  width: 55%;
+  background-color:rgb(167 163 163 / 11%);
+  padding:39px;
+  border-radius: 10px;
+}
+.content-manage .format .btn {
+  width: 120px;
+}
+
+.form-manage input {
+  width: 120px;
+  border-radius: 18px;
+  padding: 8px 16px;
+}
+
+.form-manage input[type="text"] {
+  width: 100%;
+}
+
+/**** start mediaquery ****/
+
+@media(max-width: 767px) {
+  .products .format {
+    width: 80%;
+  }
+}
+
+

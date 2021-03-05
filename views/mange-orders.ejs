@@ -1,0 +1,84 @@
+<%- include("parts/header") %> 
+
+<%- include("parts/navbar") %> 
+
+
+<div class="content-manage">
+    <div class="container">
+
+        <!-- start form -->
+
+        <form action="/admin/manage-orders" method="POST" class="format form text-center mt-5" >
+            <div class="form-group">
+              <select name="status" class="form-select form-control border mr-3 text-capitalize"
+                    aria-label="Default select example">
+                    <option value="all" selected> All </option>
+                    <option value="pending"> Pending </option>
+                    <option value="sent"> Sent </option>
+                    <option value="completed"> Completed </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" class="form-control"  placeholder="Enter user Email" />
+            </div>
+            <input type="submit" class="btn btn-primary" value="filter" />
+        </form>
+
+
+
+        <!-- start orders -->
+        <div class="content mt-3">
+            <% if(orders.length > 0) { %>
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col"> Num </th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col"> Amount </th>
+                            <th scope="col"> Cost </th>
+                            <th scope="col"> Address </th>
+                            <th scope="col"> Status </th>
+                            <th scope="col"> update </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0; i < orders.length; i++) {  %> 
+                          <tr>
+                            <td scope=""> <%= i+1 %>  </td>
+                            <td scope="col"> <%= orders[i].nameProduct %>  </td>
+                            <td scope="col"> <%= orders[i].amount %> </td>
+                            <td scope="col"> <%= orders[i].cost %> </td>
+                            <td scope="col"> <%= orders[i].address %> </td>
+                         <form method="POST" action="/admin/manage-orders/update">
+                            <td scope="col"> 
+                                <input id="selected" type="hidden" name="id" value="<%= orders[i]._id %>"/>
+                                <select class="form-control" name="status" value="<%= orders[i].status %>">
+                                  <option value="pending" <%= orders[i].status == 'pending' ? 'selected' : ''%>> Pending </option>
+                                  <option value="sent" <%= orders[i].status == 'sent' ? 'selected' : '' %>> Sent </option>
+                                  <option value="completed" <%= orders[i].status == 'completed' ? 'selected' : '' %>> Completed </option>
+                                </select>
+                            </td>
+                            <td>
+                              <input class="btn btn-primary" type="submit" value="Update" />
+                            </td>
+                          </form>
+                          </tr>
+                          <% } %> 
+                        </tbody>
+                      </table>
+                      <div class="btns">
+                        <form  method="post" action="/admin/manage-orders/delete">
+                            <% let completedOrders = orders.find(order => order.status == 'completed') %> 
+                            <input <%= completedOrders ? '' : 'disabled' %> style="width:220px;border-radius:13px"  type="submit" value="Delete completed Orders" class="btn d-block btn-danger ml-auto" />
+                        </form>
+                      </div>
+            <% } else { %> 
+                <div class="alert alert-info text-capitlize"> There are not orders yet  </div>
+            <% }  %> 
+        </div>
+    </div>
+</div>
+
+
+
+<%- include("parts/footer") %> 

@@ -1,0 +1,85 @@
+<%- include("parts/header") %>
+
+
+    <%- include("parts/navbar") %>
+
+
+        
+
+        <div class="carts pt-5">
+            <% if(amountError) {  %> 
+                <% for(let item of amountError) {  %> 
+                    <div class="container">
+                        <div class="alert alert-danger"> <%= item.msg %>  </div>
+                    </div>
+                <% } %> 
+            <% } %> 
+
+            <div class="container p-relative">
+                <div class="head">
+                    <h2 class="text-capitalize text-center pb-4"> Our carts </h2>
+                </div>
+                <% if(carts.length > 0) {  %>
+                <table class="table table-striped">
+                    
+                    <thead class="bg-info">
+                        <tr class="row text-capitlize text-center">
+                            <th class="col-md-1 text-center"> No </th>
+                            <th class="col-md-3"> product name</th>
+                            <th class="col-md-1"> price of unit</th>
+                            <th class="col-md-2"> Amount </th>
+                            <th class="col-md-1"> total </th>
+                            <th class="col-md-1"> save </th>
+                            <th class="col-md-1"> order </th>
+                            <th class="col-md-1"> Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <% for(let i=0; i < carts.length; i++) {  %>
+                            <tr class="row text-center">
+                                <td class="col-md-1"> <%= i + 1  %>  </td>
+                                <td class="text-capitalize col-md-3"> <%= carts[i].name  %> </td>
+                                <td class="text-capitalize col-md-1"> <%= carts[i].price  %> </td>
+                                <form method="POST" class="text-center"> 
+                                    <input type="hidden" name="name" value="<%= carts[i].name %>">
+                                    <input type="hidden" name="id" value="<%= carts[i]._id %>">
+                                    <td class="col-md-2"> <input type="text" name="amount" class="form-control" value="<%= carts[i].amount  %>"> </td>
+                                    
+                                    <input type="hidden" name="timestamp"  value="<%= carts[i].timestamp %>"> 
+                                    <td class="col-md-1 text-center"> <%= carts[i].amount * carts[i].price %></td>
+                                    <input type="hidden" name="price" value="<%= carts[i].price %>">
+                                    <input type="hidden" name="cost" value="<%= carts[i].amount * carts[i].price %>"> 
+                                    <td class="col-md-1"> <input type="submit" class="btn btn-primary" value="Update" formaction="/carts/update"> </td>
+                                    <td class="col-md-1"> <input type="submit" class="btn btn-info" value="order" formaction="/orders/add"> </td>
+                                    <td class="col-md-1"> <input type="submit" class="btn btn-danger" value="Delete" formaction="/carts/delete"> </td>
+                                </form>
+                            </tr>
+                            <% } %>
+                            
+                           
+                    </tbody>
+ 
+                    
+                </table>
+                <div class="btns">
+                    <form method="POST" class="form row">
+                        <input class="btn btn-primary" type="submit" value="Order All" formaction="/orders/add-all" />
+                        <input class="btn btn-danger" type="submit" value="Delete All" formaction="/carts/delete-all" />
+                    </form>
+                </div>
+                <% } else {  %>
+                    <div class="alert alert-info"> There are not carts yet </div>
+                <% } %> 
+            </div>
+            
+        </div>
+
+
+
+
+
+
+
+
+        <%- include("parts/footer") %>

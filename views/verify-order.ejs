@@ -1,0 +1,17 @@
+<%- include("parts/header") %> 
+
+<%- include("parts/navbar") %> 
+
+<div class="verify">
+    <div class="container">
+        <form class="form" method="post" action="/orders">
+            <h4 class="text-capitalize mb-3"> your address </h4> 
+            <div class="form-group">
+                <input class="form-control" name="myAddress" type="text" placeholder="Enter Your Address">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Send" />
+        </form>
+    </div>
+</div>
+
+<%- include("parts/footer") %> 
